@@ -10,6 +10,6 @@ class Kele
 
     response = self.class.post('/sessions', body: { email: @email, password: @password })
     raise "Invalid email or password. Try again?" if response.code == 404
-
+    @auth_token = response["auth_token"]
   end
 end
