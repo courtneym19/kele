@@ -3,6 +3,7 @@ PATH
   specs:
     kele (0.0.1)
       httparty (~> 0.13)
+      json (~> 2.1, >= 2.1.0)
 
 GEM
   remote: https://rubygems.org/
@@ -20,3 +21,6 @@ DEPENDENCIES
   httparty (~> 0.13)
   json (~> 2.1, >= 2.1.0)
   kele!
+
+BUNDLED WITH
+   1.15.1
