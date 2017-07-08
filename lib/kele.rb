@@ -19,5 +19,6 @@ class Kele
   def get_me
     response = self.class.get('/users/me', headers: { :authorization => @auth_token })
     @user_info = JSON.parse(response.body)
+    p @user_info
   end
 end
