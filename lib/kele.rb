@@ -21,4 +21,9 @@ class Kele
     @user_info = JSON.parse(response.body)
     p @user_info
   end
+
+  def get_mentor_availability(mentor_id)
+    response = self.class.get("/mentors/#{mentor_id}/student_availability", headers: { "authorization": @auth_token } )
+    @mentor_schedule = JSON.parse(response.body)
+  end
 end
