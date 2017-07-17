@@ -30,6 +30,15 @@ class Kele
     @mentor_schedule = JSON.parse(response.body)
   end
 
-
+#kele_client.create_submission("2547", "10_collab", "https://github.com/courtneym19/blocipedia/commits/10-collab", "test submission")
+  def create_submission(checkpoint_id, assignment_branch, assignment_commit_link, comment, enrollment_id=get_me['current_enrollment']['id'])
+    response = self.class.post("/checkpoint_submissions", headers: { "authorization": @auth_token },
+    body: {"checkpoint_id": checkpoint_id, "assignment_branch": assignment_branch, "assignment_commit_link": assignment_commit_link, "comment": comment, "enrollment_id": enrollment_id})
+    if response.code == 200
+      puts "YEAAAAAASSSSSasflkjfs!!!"
+    else
+      puts "Oopsies, try again"
+    end
+  end
 
 end
