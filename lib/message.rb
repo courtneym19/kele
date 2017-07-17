@@ -9,15 +9,20 @@ module Message
     @messages = JSON.parse(response.body)
   end
 # kele_client.create_message("courtneymiller919@gmail.com", 2299934, "test subject", "test body", nil)
-  def create_message(email, recipient_id, subject, message)
+  def create_message(sender, recipient_id, token = nil, subject, message)
+      if token
+        response = self.class.post("/messages",
+        headers: { :authorization => @auth_token },
+        body: {"sender": sender, "recipient_id": recipient_id, "token": token, "subject": subject, "stripped-text": message} )
+      else
+        response = self.class.post("/messages",
+        headers: { :authorization => @auth_token },
+        body: {"sender": sender, "recipient_id": recipient_id, "subject": subject, "stripped-text": message} )
+      end
 
-      response = self.class.post("/messages",
-      headers: { :authorization => @auth_token, :content_type => 'application/json' },
-      body: {"sender": @email, "recipient_id": recipient_id, "subject": subject, "stripped-text": message } )
-
-
-    raise "Error. Try again?" if response.code != 200
-    JSON.parse(response.body)
+      if response.code == 200
+        p "woohoo"
+      end
   end
 
 end
